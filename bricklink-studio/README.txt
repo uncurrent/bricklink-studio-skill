@@ -1,0 +1,111 @@
+# BrickLink Studio Skill
+
+A skill for AI models (Claude and others) to work with **BrickLink Studio** —
+the free LEGO digital design application by BrickLink.
+
+Built to work across all Claude environments: claude.ai chat, Claude Code, Cowork (Computer Use), and API.
+
+---
+
+## What this skill does
+
+This skill enables AI models to:
+
+- **Navigate BrickLink Studio GUI** via Computer Use — place parts, change colors, render photo-realistic images, export files *(Cowork only)*
+- **Read and parse LDraw files** (`.ldr`, `.mpd`) — extract parts, analyze structure, validate format *(all environments)*
+- **Generate LDraw models from natural language** — describe a construction in any language, get valid LDraw code back *(all environments)*
+- **Export Bills of Materials** — count parts, map to BrickLink catalog IDs, generate XML Want Lists for purchasing *(all environments)*
+
+The skill includes a **self-learning system**: Claude logs observations during sessions, and confirmed patterns accumulate in the skill over time, making it progressively better with each use.
+
+---
+
+## Structure
+
+```
+bricklink-studio/
+├── SKILL.md                        ← master skill: routing + learning system
+├── CHANGELOG.md                    ← version history
+├── meta/CONTRIBUTING.md                 ← how to contribute patterns and fixes
+│
+├── gui-navigation/                 ← Computer Use (Cowork only)
+│   ├── SKILL.md
+│   └── references/
+│       ├── panels.md               ← UI layout reference
+│       ├── shortcuts.md            ← keyboard shortcuts
+│       └── workflows.md            ← step-by-step common workflows
+│
+├── ldraw-format/                   ← all environments
+│   ├── SKILL.md
+│   └── references/
+│       └── common-parts.md         ← top-200 part IDs with dimensions
+│
+├── model-generation/               ← all environments
+│   ├── SKILL.md
+│   └── references/
+│       └── patterns.md             ← ready-made LDraw patterns
+│
+├── bom-export/                     ← all environments
+│   ├── SKILL.md
+│   └── references/
+│       └── color-ids.md            ← LDraw ↔ BrickLink color ID mapping
+│
+└── learning/                       ← accumulated knowledge (grows over time)
+    ├── observations.md             ← raw session notes (local only, not tracked)
+    ├── patterns.md                 ← confirmed patterns (tracked, PR to share)
+    ├── failed.md                   ← anti-patterns to avoid (tracked)
+    └── stats.md                    ← session statistics (tracked)
+```
+
+---
+
+## Getting started
+
+1. Download the latest `.skill` file from [Releases](../../releases)
+2. Install it in your Claude environment
+3. Start a session — the skill auto-loads based on your request
+4. At session end, Claude will summarize what was learned and ask for your rating
+
+---
+
+## Compatibility
+
+| Sub-skill | claude.ai | Claude Code | API | Cowork |
+|---|---|---|---|---|
+| `gui-navigation` | ❌ | ❌ | ❌ | ✅ |
+| `ldraw-format` | ✅ | ✅ | ✅ | ✅ |
+| `model-generation` | ✅ | ✅ | ✅ | ✅ |
+| `bom-export` | ✅ | ✅ | ✅ | ✅ |
+
+---
+
+## Language policy
+
+All skill file content is written in **English**, regardless of the user's language.
+This ensures compatibility across all models and contributors worldwide.
+The user interface (summaries, questions, explanations) can be in any language.
+
+---
+
+## Contributing
+
+See [meta/CONTRIBUTING.md](meta/CONTRIBUTING.md) for the full workflow.
+
+The short version: use the skill for a few sessions, then open a PR with entries from your
+`learning/patterns.md` or `learning/failed.md`. Add context (OS, Studio version) to each entry.
+One topic per PR.
+
+---
+
+## Authors
+
+**Slava Yaremenko** · Head of Design at [Brickit.app](https://brickit.app)
+**with Claude** (Anthropic)
+
+Questions, ideas, feedback → [uncurrent.me/links](https://uncurrent.me/links)
+
+---
+
+## License
+
+MIT — use freely, attribution appreciated.

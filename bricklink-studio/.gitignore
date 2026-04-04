@@ -1,0 +1,50 @@
+# ============================================================
+# bricklink-studio skill — .gitignore
+# ============================================================
+
+# ------------------------------------------------------------
+# Personal learning data — stays local, never pushed
+# Each user accumulates their own raw observations
+# ------------------------------------------------------------
+learning/observations.md
+
+# ------------------------------------------------------------
+# Packaged skill file — generated artifact, not source
+# Rebuild with: zip -r bricklink-studio.skill bricklink-studio/
+# ------------------------------------------------------------
+*.skill
+
+# ------------------------------------------------------------
+# OS artifacts
+# ------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ------------------------------------------------------------
+# Editor artifacts
+# ------------------------------------------------------------
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# ------------------------------------------------------------
+# Python (used in generation/parsing scripts)
+# ------------------------------------------------------------
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# ============================================================
+# Files that ARE tracked (for clarity):
+# ============================================================
+# learning/patterns.md    — confirmed patterns, shared via PR
+# learning/failed.md      — anti-patterns, shared via PR
+# learning/stats.md       — session stats, signal for maintainers
+# CHANGELOG.md            — version history
+# All SKILL.md files      — core skill content
+# All references/*.md     — reference documentation
