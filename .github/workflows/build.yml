@@ -1,0 +1,60 @@
+name: Build and Release
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*.*.*']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build .skill file
+        run: |
+          zip -r bricklink-studio.skill bricklink-studio/ \
+            -x "*.pyc" \
+            -x "*/.DS_Store"
+
+      - name: Update rolling pre-release
+        if: github.ref == 'refs/heads/main'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release delete latest --yes 2>/dev/null || true
+          git push --delete origin latest 2>/dev/null || true
+          gh release create latest \
+            --prerelease \
+            --title "Latest Build" \
+            --notes "Auto-built from the latest `main` commit. Not a stable release." \
+            bricklink-studio.skill
+
+      - name: Extract changelog entry
+        if: startsWith(github.ref, 'refs/tags/v')
+        id: changelog
+        run: |
+          VERSION="${GITHUB_REF_NAME}"
+          NOTES=$(awk -v ver="${VERSION}" '
+            /^## \[/ && index($0, "[" ver "]") > 0 { found=1; next }
+            found && /^## \[/ { exit }
+            found { print }
+          ' bricklink-studio/meta/CHANGELOG.md)
+          {
+            echo "notes<<EOF"
+            echo "$NOTES"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+      - name: Create versioned release
+        if: startsWith(github.ref, 'refs/tags/v')
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "$GITHUB_REF_NAME" \
+            --title "$GITHUB_REF_NAME" \
+            --notes "${{ steps.changelog.outputs.notes }}" \
+            bricklink-studio.skill
