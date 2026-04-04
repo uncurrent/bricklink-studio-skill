@@ -16,9 +16,10 @@ jobs:
 
       - name: Build .skill file
         run: |
-          zip -r bricklink-studio.skill bricklink-studio/ \
-            -x "*.pyc" \
-            -x "*/.DS_Store"
+          zip -r bricklink-studio.skill . \
+            -x ".git/*" -x ".github/*" \
+            -x "build.sh" -x "*.skill" \
+            -x "*.pyc" -x "*.DS_Store"
 
       - name: Update rolling pre-release
         if: github.ref == 'refs/heads/main'
@@ -42,7 +43,7 @@ jobs:
             /^## \[/ && index($0, "[" ver "]") > 0 { found=1; next }
             found && /^## \[/ { exit }
             found { print }
-          ' bricklink-studio/meta/CHANGELOG.md)
+          ' meta/CHANGELOG.md)
           {
             echo "notes<<EOF"
             echo "$NOTES"
