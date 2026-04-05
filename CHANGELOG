@@ -7,6 +7,24 @@ Format: [vX.Y.Z] YYYY-MM-DD — Description
 
 ---
 
+## [v1.3.0] 2026-04-05 — Knowledge base restructured by domain; Awesome LEGO ML expanded to individual entries
+- knowledge/INDEX.md: full rewrite — domain-based directory with 30 entries across 8 categories + routing hints
+- knowledge/part-recognition.md: NEW — Brickognize, RebrickNet, mobile apps, hierarchical 2-step, synthetic data protocol
+- knowledge/assembly-planning.md: NEW — Graph Transformer ASP, LEGO manual→plan (ECCV 2022), Break&Make, robotic assembly (2023)
+- knowledge/model-generation.md: NEW — 3D-to-Lego, LSculpt, Legolization, architectural gen, deep graph generative model, Stable Diffusion LEGO
+- knowledge/datasets-rendering.md: NEW — BrickRenderer, Lego Renderer for ML (Blender), BrickRegistration, synthetic protocol, public datasets
+- knowledge/spatial-reasoning.md: NEW — SRM (ICML 2025), SpaceTools/DIRL, Lambrecht paper, Awesome Spatial VLM, Awesome Multimodal SR
+- knowledge/collections.md: NEW — meta resources: Awesome LEGO ML, Awesome Spatial VLM, Awesome LEGO (general)
+- knowledge/repos.md + research.md: deprecated, content distributed to domain files
+
+## [v1.2.0] 2026-04-05 — Knowledge base sub-skill with hierarchical index and access counting
+- knowledge/INDEX.md: new entry point with ⚡ Hot cache, full directory, routing hints, and promotion protocol
+- knowledge/algorithms.md: Voxelization, Legolization, Assembly Sequence Planning, Collision Detection
+- knowledge/tools.md: LSculpt, LDraw standard, three.js LDraw loader, community resources
+- knowledge/repos.md: 3D-to-Lego, Awesome LEGO ML, LDraw Visualizer, Awesome Spatial Intelligence, Awesome Multimodal Spatial Reasoning
+- knowledge/research.md: SRM (ICML 2025), SpaceTools/DIRL, Lambrecht voxelization paper
+- SKILL.md: knowledge added to routing table, compatibility matrix, sub-skill index
+
 ## [v1.1.0] 2026-04-05 — Instruction Maker workflow, full shortcuts, selection tools, anti-patterns
 - gui-navigation/guide.md: Best Practices section (camera/nav, movement, selection, alignment, submodels, performance + NO AUTOSAVE warning)
 - gui-navigation/guide.md: Instruction Maker full workflow (prepare → steps → page design → callouts → Buffer Exchange → BOM → export)

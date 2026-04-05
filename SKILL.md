@@ -35,6 +35,7 @@ At the start of every session, before any task:
 | `ldraw-format` | ✅ | ✅ | ✅ | ✅ |
 | `model-generation` | ✅ | ✅ | ✅ | ✅ |
 | `bom-export` | ✅ | ✅ | ✅ | ✅ |
+| `knowledge` | ✅ | ✅ | ✅ | ✅ |
 | `gui-navigation` | ❌ | ❌ | ❌ | ✅ only |
 | `render` | ❌ | ❌ | ❌ | ✅ only |
 
@@ -57,6 +58,7 @@ All skill file content is always written in English.
 | Parse .ldr/.mpd file, what is in this file / "Разбери файл" | `ldraw-format/guide.md` |
 | Create model, write LDraw code, generate construction / "Создай модель" | `model-generation/guide.md` |
 | Parts list, BOM, buy on Bricklink / "Список деталей", "закупить" | `bom-export/guide.md` |
+| Convert STL/3D to LEGO, voxelization, algorithms, ML tools, research papers | `knowledge/INDEX.md` |
 
 Multiple sub-skills can be loaded simultaneously if the task spans domains (e.g. generate + export BOM).
 
@@ -215,3 +217,4 @@ used most, which patterns fail, and overall skill health across users.
 - `ldraw-format/guide.md` — Read, parse, validate LDraw and .io files
 - `model-generation/guide.md` — Generate LDraw code from natural language descriptions
 - `bom-export/guide.md` — Extract parts list, map to BrickLink catalog, estimate cost
+- `knowledge/INDEX.md` — Curated external knowledge: algorithms, tools, repos, research (read INDEX first, then category files as needed)
