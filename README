@@ -38,6 +38,11 @@ bricklink-studio-skill/
 │       ├── shortcuts.md            ← keyboard shortcuts
 │       └── workflows.md            ← step-by-step common workflows
 │
+├── render/                         ← Computer Use (Cowork only)
+│   ├── guide.md
+│   └── references/
+│       └── settings.md             ← render dialog options and recommended values
+│
 ├── ldraw-format/                   ← all environments
 │   ├── guide.md
 │   └── references/
@@ -76,6 +81,7 @@ bricklink-studio-skill/
 | Sub-skill | claude.ai | Claude Code | API | Cowork |
 |---|---|---|---|---|
 | `gui-navigation` | ❌ | ❌ | ❌ | ✅ |
+| `render` | ❌ | ❌ | ❌ | ✅ |
 | `ldraw-format` | ✅ | ✅ | ✅ | ✅ |
 | `model-generation` | ✅ | ✅ | ✅ | ✅ |
 | `bom-export` | ✅ | ✅ | ✅ | ✅ |

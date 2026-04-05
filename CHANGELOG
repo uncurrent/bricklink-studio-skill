@@ -7,6 +7,35 @@ Format: [vX.Y.Z] YYYY-MM-DD — Description
 
 ---
 
+## [v1.1.0] 2026-04-05 — Instruction Maker workflow, full shortcuts, selection tools, anti-patterns
+- gui-navigation/guide.md: Best Practices section (camera/nav, movement, selection, alignment, submodels, performance + NO AUTOSAVE warning)
+- gui-navigation/guide.md: Instruction Maker full workflow (prepare → steps → page design → callouts → Buffer Exchange → BOM → export)
+- gui-navigation/references/shortcuts.md: Full keyboard shortcut reference from official BrickLink Help Center (Building Mode + Instruction Maker)
+- bom-export/guide.md: Export formats (CSV, Wanted List XML) and Custom Palette workflow
+- learning/failed.md: 3 confirmed anti-patterns (layout corruption, snapping slowdown, Buffer Exchange drag bug)
+
+## [v1.0.8] 2026-04-05 — Best practices: submodels, performance, WASD, Render Queue
+- gui-navigation/references/submodels.md (NEW): Ctrl+G grouping, linked duplicates,
+  Copy and Mirror, naming conventions, submodels in Instructions Maker
+- gui-navigation/references/performance.md (NEW): snapping lag fix, Collision Detection toggle,
+  viewport Render Quality setting, large model tips
+- gui-navigation/references/shortcuts.md: WASD movement (no snap/collision), arrow rotation
+  (90°/45°), T Movement Controls, F focus + Reset Origin
+- render/references/settings.md: Render Queue workflow, Stud Logo toggle with use-case table
+
+## [v1.0.7] 2026-04-05 — New sub-skill: render
+- Added render/guide.md: Studio Photo Realistic render workflow, Blender path, common issues table
+- Added render/references/settings.md: quality presets, resolution, background, lighting, performance tips
+- SKILL.md: added render to compatibility matrix, routing logic, sub-skill index
+- SKILL.md: fixed CHANGELOG path (meta/ → root) and build command
+
+## [v1.0.6] 2026-04-05 — GUI improvements: screenshot strategy, overlap indicator, hotkeys
+- gui-navigation/guide.md: area screenshot protocol with macOS shortcut variants and clipboard note
+- gui-navigation/guide.md: visual indicator for overlapping/clipping bricks (contour outline)
+- gui-navigation/guide.md: multi-action batching efficiency pattern with learn/record loop
+- gui-navigation/references/shortcuts.md: full part movement (arrow keys, Page Up/Down),
+  rotation, snapping, and precision placement via Properties
+
 ## [v1.0.5] 2026-04-05 — New references: .io format, pile workflow, Blender pipeline
 - Added ldraw-format/references/io-format.md: .io ZIP structure, model.ldr vs lxfml distinction,
   Python code for reading/editing/analyzing .io files, git restore workflow

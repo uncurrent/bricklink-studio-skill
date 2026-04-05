@@ -8,7 +8,7 @@ description: >
   This skill routes to the appropriate sub-skill based on the task and available tools.
 compatibility:
   any: ldraw-format, model-generation, bom-export
-  computer_use_only: gui-navigation
+  computer_use_only: gui-navigation, render
 ---
 
 # BrickLink Studio — Master Skill
@@ -36,8 +36,9 @@ At the start of every session, before any task:
 | `model-generation` | ✅ | ✅ | ✅ | ✅ |
 | `bom-export` | ✅ | ✅ | ✅ | ✅ |
 | `gui-navigation` | ❌ | ❌ | ❌ | ✅ only |
+| `render` | ❌ | ❌ | ❌ | ✅ only |
 
-**Rule:** If `computer_use` / `bash_tool` with display access is NOT available — skip `gui-navigation` entirely.
+**Rule:** If `computer_use` / `bash_tool` with display access is NOT available — skip `gui-navigation` and `render` entirely.
 Work via LDraw text format instead.
 
 ---
@@ -51,7 +52,8 @@ All skill file content is always written in English.
 
 | User intent | Sub-skill to load |
 |---|---|
-| Open Studio, click, build in GUI, render / "Открой Studio", "сделай рендер" | `gui-navigation/guide.md` |
+| Open Studio, click, build in GUI / "Открой Studio", "поставь кубик" | `gui-navigation/guide.md` |
+| Render, photo-realistic image, visualize / "сделай рендер", "сфотографируй" | `render/guide.md` |
 | Parse .ldr/.mpd file, what is in this file / "Разбери файл" | `ldraw-format/guide.md` |
 | Create model, write LDraw code, generate construction / "Создай модель" | `model-generation/guide.md` |
 | Parts list, BOM, buy on Bricklink / "Список деталей", "закупить" | `bom-export/guide.md` |
@@ -117,14 +119,14 @@ Append an entry whenever something noteworthy happens:
    - 🗑️ Discard — if it was a one-off, not generalizable
 3. **Present the proposal to user** — short list, one line per entry
 4. **Wait for confirmation** — then write the promoted entries to their files
-5. **Append an entry to `meta/CHANGELOG.md`** using semver format `[vX.Y.Z] YYYY-MM-DD`
+5. **Append an entry to `CHANGELOG`** using semver format `[vX.Y.Z] YYYY-MM-DD`
    - Patch (Z): fixes, renames, content tweaks
    - Minor (Y): new sub-skill or major feature added
    - Major (X): breaking restructure
    - Current version is in the latest CHANGELOG entry — increment accordingly
 6. **Repackage the skill** if significant patterns were added:
    ```bash
-   cd /home/claude && zip -r bricklink-studio.skill bricklink-studio/
+   cd ~/Dev/BrickLink\ Studio\ Skill && ./build.sh
    ```
 
 ### Summary format for user
@@ -208,7 +210,8 @@ used most, which patterns fail, and overall skill health across users.
 
 ## Sub-skill Index
 
-- `gui-navigation/guide.md` — Navigate Studio UI, place parts, render (Computer Use only)
-- `ldraw-format/guide.md` — Read, parse, validate LDraw files
+- `gui-navigation/guide.md` — Navigate Studio UI, place and move parts (Computer Use only)
+- `render/guide.md` — Photo-realistic rendering via Studio or Blender (Computer Use only)
+- `ldraw-format/guide.md` — Read, parse, validate LDraw and .io files
 - `model-generation/guide.md` — Generate LDraw code from natural language descriptions
 - `bom-export/guide.md` — Extract parts list, map to BrickLink catalog, estimate cost

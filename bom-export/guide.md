@@ -129,3 +129,22 @@ Always include:
 ## Reference Files
 
 - `references/color-ids.md` — LDraw color ID ↔ BrickLink color ID ↔ color name mapping
+
+---
+
+## Export Formats for Parts Lists
+
+Available via File menu (no default shortcuts assigned):
+- **Export Parts List As CSV** — for spreadsheets / external tools
+- **Export Parts List As Wanted List XML** — direct import into BrickLink Wanted Lists
+
+---
+
+## Building From a Real Set (Custom Palette)
+
+1. Icon Bar → Open → **Import official LEGO set** → enter set number
+2. All parts from that set appear as a Custom Palette
+3. Studio tracks quantities — parts disappear from palette when used up
+4. ⚠️ Warning: Studio allows pasting submodels that exceed palette quantity — use BrickLink compare tool to verify
+
+Source: https://rebrickable.com/help/studio-palette/
