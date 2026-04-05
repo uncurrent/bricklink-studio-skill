@@ -23,30 +23,33 @@ The skill includes a **self-learning system**: Claude logs observations during s
 ## Structure
 
 ```
-bricklink-studio/
+bricklink-studio-skill/
 ├── SKILL.md                        ← master skill: routing + learning system
-├── CHANGELOG.md                    ← version history
-├── meta/CONTRIBUTING.md                 ← how to contribute patterns and fixes
+├── README                          ← this file
+├── CONTRIBUTING                    ← how to contribute patterns and fixes
+├── CHANGELOG                       ← version history
+├── LICENSE                         ← MIT
+├── build.sh                        ← local build script
 │
 ├── gui-navigation/                 ← Computer Use (Cowork only)
-│   ├── SKILL.md
+│   ├── guide.md
 │   └── references/
 │       ├── panels.md               ← UI layout reference
 │       ├── shortcuts.md            ← keyboard shortcuts
 │       └── workflows.md            ← step-by-step common workflows
 │
 ├── ldraw-format/                   ← all environments
-│   ├── SKILL.md
+│   ├── guide.md
 │   └── references/
 │       └── common-parts.md         ← top-200 part IDs with dimensions
 │
 ├── model-generation/               ← all environments
-│   ├── SKILL.md
+│   ├── guide.md
 │   └── references/
 │       └── patterns.md             ← ready-made LDraw patterns
 │
 ├── bom-export/                     ← all environments
-│   ├── SKILL.md
+│   ├── guide.md
 │   └── references/
 │       └── color-ids.md            ← LDraw ↔ BrickLink color ID mapping
 │
@@ -61,7 +64,7 @@ bricklink-studio/
 
 ## Getting started
 
-1. Download the latest `.skill` file from [Releases](../../releases)
+1. Download the latest `.skill` file from [Releases](https://github.com/uncurrent/bricklink-studio-skill/releases)
 2. Install it in your Claude environment
 3. Start a session — the skill auto-loads based on your request
 4. At session end, Claude will summarize what was learned and ask for your rating
@@ -89,7 +92,7 @@ The user interface (summaries, questions, explanations) can be in any language.
 
 ## Contributing
 
-See [meta/CONTRIBUTING.md](meta/CONTRIBUTING.md) for the full workflow.
+See [CONTRIBUTING](CONTRIBUTING) for the full workflow.
 
 The short version: use the skill for a few sessions, then open a PR with entries from your
 `learning/patterns.md` or `learning/failed.md`. Add context (OS, Studio version) to each entry.

@@ -130,7 +130,7 @@ The original entry is then marked [INTEGRATED].
 
 ## Releasing a new version (maintainer)
 
-After merging contributions and updating meta/CHANGELOG.md:
+After merging contributions and updating CHANGELOG:
 
     git tag v1.2.3
     git push origin v1.2.3
@@ -143,6 +143,6 @@ versioned release automatically.
 ## Language policy
 
 All skill file content must be in English — learning/, SKILL.md,
-references/, meta/CHANGELOG.md.
+references/, CHANGELOG.
 
 Conversations with Claude can be in any language. Skill files cannot.

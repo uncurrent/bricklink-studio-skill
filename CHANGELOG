@@ -30,7 +30,6 @@ Format: [vX.Y.Z] YYYY-MM-DD — Description
 ## [v1.0.2] 2026-04-05 — Feedback system + English policy + Git config
 - Added User Feedback System (session rating + stats.md)
 - Added Language Policy: all skill files must be in English
-- Cleaned all Russian text from skill files (routing examples excepted)
 - Added learning/stats.md for cross-user signal
 - Added .gitignore (excludes observations.md and *.skill)
 - Added CONTRIBUTING with PR workflow and entry formats

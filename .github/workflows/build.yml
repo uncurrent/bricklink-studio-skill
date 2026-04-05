@@ -43,7 +43,7 @@ jobs:
             /^## \[/ && index($0, "[" ver "]") > 0 { found=1; next }
             found && /^## \[/ { exit }
             found { print }
-          ' meta/CHANGELOG.md)
+          ' CHANGELOG)
           {
             echo "notes<<EOF"
             echo "$NOTES"
