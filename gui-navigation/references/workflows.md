@@ -60,7 +60,58 @@
 
 ---
 
-## Workflow 7: Render a Photo-Realistic Image
+## Workflow 7: Replace Parts (UI)
+
+1. Open the model in Studio
+2. In the **Step List** (right panel) — click a part to highlight it in the viewport
+3. Click the **REPLACE** tab (top-left corner)
+4. Type the desired part name or ID in the search field
+5. Double-click the replacement part — applied immediately
+
+**Multi-replace:** Cmd+click multiple parts in Step List → double-click replacement.
+All selected parts of the same type will be replaced simultaneously.
+
+**Known issues:**
+- Cmd+A in the REPLACE search field types "a" instead of selecting all — use the × button to clear
+- Mixed selection of different part types → REPLACE may find no candidates — replace one type at a time
+- Studio **auto-saves** changes without warning — undo (Cmd+Z) works but does not always roll back everything
+- If the file is corrupted after editing — restore from git
+
+---
+
+## Workflow 8: Create a Random Pile of Parts
+
+Studio has no physics or scatter tools — pile appearance is achieved manually:
+
+1. Place all parts in the viewport at approximately the desired XZ footprint
+2. Set different Y values (height) for each part — parts "float" at different levels
+3. Apply arbitrary rotations (use R during placement or rotate in Properties)
+4. Lock camera to **top-down view** (camera lock button in viewport)
+5. From above, a group of parts at varied heights and angles reads as a realistic pile
+6. Export to LDraw when the top-down composition looks correct
+
+**For physically realistic piles:** export to Blender → apply Rigid Body simulation →
+parts settle under gravity. See `references/blender-pipeline.md`.
+
+---
+
+## Workflow 9: Export to Blender for Rendering
+
+Best results for photorealistic LEGO visualization:
+
+1. In Studio: **File → Export → LDraw** → save as `.ldr` or `.mpd`
+2. In Blender, import via one of:
+   - `ExportLDraw` — supports .ldr, .mpd, .l3b
+   - `ldr_tools_blender` — optimized for large scenes (100k+ parts), uses instancing
+   - `ImportLDraw` — standard importer
+3. Apply Rigid Body physics for natural settling (Active on parts, Passive on ground plane)
+4. Render with Cycles — LEGO materials and stud logos render correctly
+
+**For scenes with 10k+ parts:** use Geometry Nodes instancing and set display to Normal resolution.
+
+---
+
+## Workflow 10: Render a Photo-Realistic Image
 
 1. Position camera: hold `Alt` + right-click drag to orbit, zoom to compose shot
 2. Render → Photo Realistic Render (`F11`)

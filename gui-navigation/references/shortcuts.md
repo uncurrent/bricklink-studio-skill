@@ -14,6 +14,12 @@
 | F | Frame selected part |
 | A | Select all |
 
+## Part Placement (while placing a part from the palette)
+| Key | Action |
+|---|---|
+| R | Rotate the part being placed |
+| T | Move the part being placed |
+
 ## Editing
 | Key | Action |
 |---|---|
