@@ -7,6 +7,13 @@ Format: [vX.Y.Z] YYYY-MM-DD — Description
 
 ---
 
+## [v1.5.0] 2026-04-05 — Part piles project: full algorithm, 8 patterns, 7 anti-patterns from Pockets 1–6
+- projects/part-piles/guide.md: complete rewrite — size standards, part composition recipe, v3 generation algorithm (rotation-aware AABB), PART_DIMS table, rotation matrix code, placement parameters, collision check, multi-seed selection, .io packaging, render settings, Blender physics option, open issues
+- projects/part-piles/patterns.md: 7 confirmed patterns (rotation-aware AABB, full 3D rotation, tilt_strength, triangular Y, largest-first order, multi-seed selection, minimal .io package)
+- projects/part-piles/failed.md: 7 anti-patterns (Y-rotation only, fixed ellipsoid BV, uniform Y, Gaussian without size ordering, LXFML editing, EROFS zip, print/stdout contamination)
+- learning/patterns.md: 2 general patterns (zip in /tmp, stderr for stats)
+- learning/failed.md: 1 general anti-pattern (LXFML editing)
+
 ## [v1.4.0] 2026-04-05 — Project-specific knowledge system (general vs format-specific)
 - projects/_INDEX.md: project registry with status and routing logic
 - projects/_template/: reusable template (guide, patterns, failed, observations)

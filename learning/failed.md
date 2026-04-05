@@ -16,6 +16,13 @@ Format per entry:
 
 <!-- Failed patterns are appended below this line -->
 
+## [ANTI-PATTERN] 2026-04-04 — Editing model.lxfml has no effect on Studio rendering
+**What was tried:** Modifying the XML content of `model.lxfml` inside a .io ZIP archive
+**What happened:** Studio viewport didn't change — model appeared exactly as before
+**Avoid because:** Studio renders from `model.ldr` (LDraw format), not from LXFML. LXFML is secondary metadata only.
+**Alternative:** Always edit `model.ldr`. LXFML can be left unchanged for programmatically generated files.
+Source: BrickitStudio/Pockets session notes
+
 ## [ANTI-PATTERN] 2026-04-05 — Instructions layout breaks on large models
 **What was tried:** Editing step views (camera angle/orientation) on earlier steps in large models
 **What happened:** Studio corrupts page layout — steps shift, models misalign
