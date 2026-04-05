@@ -21,10 +21,18 @@ Read this file first, then load the relevant sub-skill(s).
 ## Session Startup Checklist
 
 At the start of every session, before any task:
-1. Read `learning/patterns.md` — apply confirmed patterns, they override sub-skill defaults
-2. Read `learning/failed.md` — know what to avoid
-3. Route to the correct sub-skill (see Routing Logic below)
-4. At session end — run the **Session Auto-Summary Protocol**
+1. Read `learning/patterns.md` — apply confirmed general patterns
+2. Read `learning/failed.md` — know what to avoid generally
+3. Check `projects/_INDEX.md` — if the task matches a known project type, load that project's files:
+   - `projects/<name>/guide.md` — project constraints and workflow
+   - `projects/<name>/patterns.md` — project-specific confirmed patterns (override general ones)
+   - `projects/<name>/failed.md` — project-specific anti-patterns
+4. Route to the correct sub-skill (see Routing Logic below)
+5. At session end — run the **Session Auto-Summary Protocol**
+
+**Two-level knowledge:**
+- `learning/` — general, applies to all Studio work
+- `projects/<name>/` — specific to one project type; takes precedence when loaded
 
 ---
 
@@ -115,9 +123,13 @@ Append an entry whenever something noteworthy happens:
 ### Steps
 
 1. **Read `learning/observations.md`** — find all `[UNVERIFIED]` entries from today
+   Also read `projects/<active-project>/observations.md` if a project was active this session
 2. **For each entry**, propose one of:
    - ✅ Promote to `patterns.md` — if it worked reliably
+     - General insight → `learning/patterns.md`
+     - Project-specific → `projects/<name>/patterns.md`
    - ❌ Move to `failed.md` — if it failed or caused problems
+     - General → `learning/failed.md` | Project-specific → `projects/<name>/failed.md`
    - 🗑️ Discard — if it was a one-off, not generalizable
 3. **Present the proposal to user** — short list, one line per entry
 4. **Wait for confirmation** — then write the promoted entries to their files
@@ -218,3 +230,12 @@ used most, which patterns fail, and overall skill health across users.
 - `model-generation/guide.md` — Generate LDraw code from natural language descriptions
 - `bom-export/guide.md` — Extract parts list, map to BrickLink catalog, estimate cost
 - `knowledge/INDEX.md` — Curated external knowledge: algorithms, tools, repos, research (read INDEX first, then category files as needed)
+
+## Project Index
+
+Projects are specific recurring build types with their own isolated knowledge.
+Always check `projects/_INDEX.md` at session start.
+
+- `projects/part-piles/` — 🟢 Active: random part pile renders for app graphics
+- `projects/brickheadz/` — 🟡 Placeholder: Brickheadz-style figures
+- `projects/_template/` — Template for new projects (copy to start a new one)

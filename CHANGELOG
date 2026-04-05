@@ -7,6 +7,13 @@ Format: [vX.Y.Z] YYYY-MM-DD — Description
 
 ---
 
+## [v1.4.0] 2026-04-05 — Project-specific knowledge system (general vs format-specific)
+- projects/_INDEX.md: project registry with status and routing logic
+- projects/_template/: reusable template (guide, patterns, failed, observations)
+- projects/part-piles/: active project — random pile renders for app graphics (guide + workflow + LDraw code + render settings)
+- projects/brickheadz/: placeholder for future Brickheadz work
+- SKILL.md: two-level knowledge system documented in startup checklist, auto-summary updated to handle project observations, Project Index added to sub-skill index
+
 ## [v1.3.0] 2026-04-05 — Knowledge base restructured by domain; Awesome LEGO ML expanded to individual entries
 - knowledge/INDEX.md: full rewrite — domain-based directory with 30 entries across 8 categories + routing hints
 - knowledge/part-recognition.md: NEW — Brickognize, RebrickNet, mobile apps, hierarchical 2-step, synthetic data protocol
