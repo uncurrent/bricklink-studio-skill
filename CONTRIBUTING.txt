@@ -1,0 +1,148 @@
+# Contributing to bricklink-studio skill
+
+This document covers two things:
+- How the self-learning system works — so you understand what's happening
+- How to contribute patterns back — so others benefit from your sessions
+
+---
+
+## How the skill works: two usage modes
+
+The .skill file and this repository serve different purposes.
+
+                      .skill file            This repo (cloned)
+                      ───────────────────    ──────────────────────────────
+What it is            A snapshot, read-only  Live source, readable+writable
+Claude reads from it  Yes                    Yes
+Claude writes to it   No                     Yes, if you grant folder access
+Learning accumulates  No                     Yes
+Who it's for          Anyone using the skill Contributors
+
+User mode — download .skill from Releases, double-click to install in Claude.
+Claude reads the skill. Learnings stay in memory only — nothing is written to disk.
+
+Contributor mode — clone the repo, grant Claude access to the folder.
+Claude reads AND writes. Learnings accumulate in learning/ on your machine.
+You review and push what's worth sharing.
+
+---
+
+## Contributor setup
+
+### 1. Clone the repo
+
+    git clone https://github.com/uncurrent/bricklink-studio-skill.git
+
+Put it somewhere permanent — this is where Claude will write during sessions.
+Example: ~/Dev/bricklink-studio-skill/
+
+### 2. Grant Claude access to the folder
+
+In Cowork: click the folder icon in the sidebar → select your cloned repo folder.
+In Claude Code: accessible automatically once you're in the repo directory.
+
+No need to install the .skill file — Claude reads directly from the cloned folder.
+
+### 3. Start a session
+
+Open Claude, describe a BrickLink Studio task. Claude will:
+- Load SKILL.md and learning/patterns.md + learning/failed.md
+- Route to the appropriate sub-skill
+- Write observations to learning/observations.md during the session
+
+---
+
+## The learning cycle
+
+Session starts
+  └─ Claude reads learning/patterns.md + learning/failed.md
+       └─ Applies confirmed patterns to the task
+
+During session
+  └─ Something new or unexpected happens
+       └─ Claude writes [UNVERIFIED] entry to learning/observations.md
+
+Session ends (say "done", "wrap up", "закончили", etc.)
+  └─ Claude proposes what to do with each observation:
+       ✅ Promote to patterns.md
+       ❌ Move to failed.md
+       🗑  Discard (one-off, not generalizable)
+  └─ You confirm → Claude writes to the appropriate files
+  └─ Claude asks for a session rating → logged to learning/stats.md
+
+
+What each file does:
+
+learning/observations.md   Raw session notes — personal, messy, local only   NOT in git
+learning/patterns.md       Confirmed patterns — what works reliably            tracked
+learning/failed.md         Anti-patterns — what to avoid                       tracked
+learning/stats.md          Session statistics — usage signal for maintainers   tracked
+
+observations.md is in .gitignore — it stays local.
+The other three are pushed and are the main contribution surface.
+
+---
+
+## Contributing patterns back
+
+After a few sessions, your learning/patterns.md and learning/failed.md
+will have entries worth sharing.
+
+Workflow:
+
+    fork → use for 2–3 sessions → review → PR
+
+1. Fork the repo on GitHub
+2. Clone your fork, use it as described above
+3. After a few sessions, review learning/patterns.md and learning/failed.md
+4. Add context to each entry (OS, Studio version) before submitting
+5. Open a PR — one topic per PR
+
+### Entry format for patterns.md
+
+    ## YYYY-MM-DD — Short descriptive title
+    **Context:** When this applies (OS, Studio version, specific workflow)
+    **Pattern:** What to do, concisely
+    **Confirmed:** How many sessions / times observed
+    **Sub-skill:** Which sub-skill this belongs to
+
+### Entry format for failed.md
+
+    ## YYYY-MM-DD — Short descriptive title
+    **What was tried:** Description of the approach
+    **What happened:** The failure or bad outcome
+    **Avoid because:** Root cause if known
+    **Alternative:** What to do instead (if known)
+    **Context:** OS, Studio version, conditions
+
+### What gets merged
+
+learning/patterns.md    Any well-documented pattern with context
+learning/failed.md      Any confirmed failure with an alternative
+learning/stats.md       Every session — just push it
+SKILL.md / references/  Discuss in an issue first
+
+When a pattern in patterns.md is confirmed by 3+ independent contributors,
+the maintainer may integrate it directly into the relevant sub-skill.
+The original entry is then marked [INTEGRATED].
+
+---
+
+## Releasing a new version (maintainer)
+
+After merging contributions and updating meta/CHANGELOG.md:
+
+    git tag v1.2.3
+    git push origin v1.2.3
+
+GitHub Actions builds bricklink-studio.skill and publishes it as a
+versioned release automatically.
+
+---
+
+## Language policy
+
+All skill file content must be in English — learning/, SKILL.md,
+references/, meta/CHANGELOG.md.
+
+Conversations with Claude can be in any language. Skill files cannot.
