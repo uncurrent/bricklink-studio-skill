@@ -3,7 +3,10 @@ name: bricklink-studio/render
 description: >
   Render photo-realistic images from BrickLink Studio models.
   Use when user wants: render, photo-realistic image, high quality image, screenshot of model,
-  Blender render, visualize model, "сделай рендер", "сфотографируй модель".
+  Blender render, visualize model, "сделай рендер", "сфотографируй модель" (Russian),
+  "rendrer le modèle", "faire une photo" (French), "render machen", "Foto vom Modell" (German),
+  "hacer render", "visualizar modelo" (Spanish), "レンダリングして", "モデルを撮影" (Japanese),
+  "渲染模型", "生成图片" (Chinese).
   Requires computer_use for Studio rendering. Blender pipeline works without display if Blender is scripted.
 compatibility:
   computer_use_only: studio-render

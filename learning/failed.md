@@ -43,3 +43,21 @@ Source: https://brickbanter.com/2020/09/29/bricklink-studio-five-handy-tips/
 **Avoid because:** Known UI bug in Buffer Exchange
 **Alternative:** Enter X/Y/Z offset values manually in the input fields in the sidebar
 Source: https://open-l-gauge.eu/making-building-instructions-in-studio/
+
+## [ANTI-PATTERN] 2026-04-06 — Opening .io files via macOS `open -a` or double-click fails
+**What was tried:** `open -a "/Applications/Studio 2.0/Studio.app" file.io` to open an .io file
+**What happened:** Studio shows "cannot open files in Stud.io Format" error dialog
+**Avoid because:** Studio does not register as macOS file handler for .io files (Unity build omission).
+The file association can be patched via Info.plist (CFBundleDocumentTypes + UTImportedTypeDeclarations),
+but the patch is reset on every Studio update.
+**Alternative:** Open files from within Studio via File → Open dialog (Cmd+O). For automation use
+AppleScript: Cmd+O → Cmd+Shift+G → type absolute path → Enter → Enter.
+Source: contribution_studio-macos-io-file-association.md, contribution_model-preview-script.md
+
+## [ANTI-PATTERN] 2026-04-06 — Quartz CGWindowID for screencapture is unreliable
+**What was tried:** Python + Quartz framework to find Studio's window ID, then `screencapture -l{windowID}`
+**What happened:** Script hung or crashed. With `set -euo pipefail`, the failure killed the whole bash script silently.
+**Avoid because:** Process name matching in Quartz may not match "Studio", and failures are silent in pipefail mode.
+**Alternative:** Use AppleScript System Events to get window bounds: `position of window 1` + `size of window 1`,
+then `screencapture -R x,y,w,h`.
+Source: contribution_model-preview-script.md

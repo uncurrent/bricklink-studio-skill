@@ -3,7 +3,10 @@ name: bricklink-studio/model-generation
 description: >
   Generate LDraw code for LEGO models from natural language descriptions.
   Use when user says: "create model", "write LDraw", "generate building/wall/car",
-  "make LEGO construction", or equivalent in any language (e.g. Russian: "создай модель", "сгенерируй").
+  "make LEGO construction", or equivalent in any language:
+  "создай модель", "сгенерируй" (Russian), "crée un modèle", "génère une construction" (French),
+  "erstelle ein Modell", "baue eine Konstruktion" (German), "crea un modelo", "genera construcción" (Spanish),
+  "モデルを作って", "レゴを生成して" (Japanese), "创建模型", "生成积木" (Chinese).
   Works in all environments. Output is valid .ldr file content.
 compatibility:
   any: true

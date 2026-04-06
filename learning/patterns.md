@@ -31,3 +31,26 @@ cp /tmp/output.zip "/path/to/workspace/output.zip"
 **Pattern:** Never mix diagnostic output with file output. Use `print(..., file=sys.stderr)` for stats/debug. Write the generated file with `open(path, 'w')`, not stdout.
 **Confirmed:** 1 time (Pocket 5 generator)
 **Sub-skill:** model-generation, general Python scripting
+
+## 2026-04-06 — Studio.app lives inside a "Studio 2.0" folder on macOS
+**Context:** Launching or scripting BrickLink Studio on macOS
+**Pattern:** The app is at `/Applications/Studio 2.0/Studio.app` (folder is "Studio 2.0", binary is Studio.app).
+For `open -a` (app launch only): use full path `/Applications/Studio 2.0/Studio.app`.
+For AppleScript `tell process`: use `"Studio"` (not "Studio 2.0").
+**Confirmed:** 1 time (model_preview.sh automation)
+**Sub-skill:** gui-navigation
+
+## 2026-04-06 — Studio's default view is a good 45° perspective — capture first
+**Context:** Automated screencapture of Studio models for QA/preview
+**Pattern:** When Studio opens a file, it shows a 3/4 perspective view. Capture this FIRST,
+before sending any numpad view-switch keys. After switching to orthographic views (Keypad 1/4/5),
+the perspective is lost. Key codes for AppleScript: Keypad 1=83, 2=84, 3=85, 4=86, 5=87, 6=88.
+**Confirmed:** 1 time (model_preview.sh v5+)
+**Sub-skill:** gui-navigation
+
+## 2026-04-06 — Clean Studio viewport for screenshots: three steps
+**Context:** Preparing Studio for screencapture (panels and ground obscure the model)
+**Pattern:** Send three keystrokes in sequence: Cmd+/ (hide all panels), Cmd+B (hide ground plane),
+Escape (deselect all parts, removes selection highlights). Restore with Cmd+/ and Cmd+B again.
+**Confirmed:** 1 time (model_preview.sh)
+**Sub-skill:** gui-navigation

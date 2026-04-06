@@ -1,0 +1,189 @@
+# Contribution: Studio.app macOS .io File Association Patch
+
+**Source chat:** "studio patch" (2026-04-06)
+**Scope:** BrickLink Studio 2.0 on macOS — fixing double-click on `.io` files
+
+---
+
+## 1. What Was Developed
+
+A patch for BrickLink Studio 2.0's `Info.plist` that enables macOS file association for `.io` files. Without this patch, double-clicking a `.io` file does not open Studio — macOS doesn't recognize Studio as a handler for the format.
+
+This is relevant to the skill because anyone working with `.io` files on macOS (rendering, batch processing, opening generated Pockets) hits this friction.
+
+---
+
+## 2. The Problem
+
+BrickLink Studio 2.0 (version 2.26.2_1, Unity 2022.3.62f2) ships with an `Info.plist` that contains **no file type declarations at all**:
+
+- No `CFBundleDocumentTypes` — macOS doesn't know what files Studio can open
+- No `UTImportedTypeDeclarations` / `UTExportedTypeDeclarations` — the `.io` UTI is undefined
+- No `CFBundleURLTypes` — no URL scheme handling
+
+Symptoms:
+- Double-click on `.io` file → macOS does not offer Studio in "Open With"
+- `open -a Studio.app file.io` → fails
+- Drag & drop onto Dock icon → fails
+- Right-click → Open With → Studio not listed
+
+This is a bug in Studio's build process — the Unity export doesn't include document type declarations.
+
+---
+
+## 3. The Fix
+
+### 3.1 What Was Added to Info.plist
+
+Two blocks were added before the closing `</dict></plist>`:
+
+**CFBundleDocumentTypes:**
+```xml
+<key>CFBundleDocumentTypes</key>
+<array>
+  <dict>
+    <key>CFBundleTypeName</key>
+    <string>Stud.io Model</string>
+    <key>CFBundleTypeRole</key>
+    <string>Editor</string>
+    <key>LSHandlerRank</key>
+    <string>Owner</string>
+    <key>LSItemContentTypes</key>
+    <array>
+      <string>com.bricklink.studio.io</string>
+    </array>
+    <key>CFBundleTypeExtensions</key>
+    <array>
+      <string>io</string>
+    </array>
+    <key>CFBundleTypeIconFile</key>
+    <string>PlayerIcon.icns</string>
+  </dict>
+</array>
+```
+
+**UTImportedTypeDeclarations:**
+```xml
+<key>UTImportedTypeDeclarations</key>
+<array>
+  <dict>
+    <key>UTTypeIdentifier</key>
+    <string>com.bricklink.studio.io</string>
+    <key>UTTypeDescription</key>
+    <string>Stud.io Model</string>
+    <key>UTTypeConformsTo</key>
+    <array>
+      <string>public.data</string>
+      <string>public.archive</string>
+    </array>
+    <key>UTTypeTagSpecification</key>
+    <dict>
+      <key>public.filename-extension</key>
+      <array>
+        <string>io</string>
+      </array>
+      <key>public.mime-type</key>
+      <string>application/x-studio-model</string>
+    </dict>
+  </dict>
+</array>
+```
+
+### 3.2 Key Design Decisions
+
+- **UTI identifier `com.bricklink.studio.io`** — follows reverse-domain convention matching the app's `CFBundleIdentifier` (`com.BrickLink.Studio`)
+- **`UTImportedTypeDeclarations`** (not `UTExportedTypeDeclarations`) — because we're declaring a type we consume but don't own the canonical definition of
+- **`UTTypeConformsTo: public.data + public.archive`** — `.io` files are ZIP archives containing LDraw data + Studio metadata, so both are accurate
+- **`LSHandlerRank: Owner`** — tells macOS this app is THE handler for `.io` files, not just a viewer
+- **`CFBundleTypeRole: Editor`** — Studio can both read and write `.io` files
+- **Both `LSItemContentTypes` and `CFBundleTypeExtensions`** included — UTI-based matching is modern, extension-based is fallback for older macOS
+
+### 3.3 Post-Patch Steps (must be done on macOS)
+
+After modifying Info.plist:
+
+1. **Code signature** — the original signature becomes invalid. Two options:
+   - Remove `_CodeSignature/` directory entirely (simplest; macOS shows "unidentified developer" on first launch, bypass with right-click → Open)
+   - Ad-hoc re-sign: `codesign -s - --force --deep Studio.app`
+2. **Re-register with Launch Services** — macOS caches file associations aggressively:
+   - Targeted: `/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -f "/path/to/Studio.app"`
+   - Alternative: moving the app to a different folder and back also triggers re-read
+
+---
+
+## 4. What Failed / Was Considered
+
+| Approach | Why rejected |
+|----------|-------------|
+| Editing the binary | Unnecessary — the issue is purely in Info.plist metadata, not in app code |
+| `open -a` as workaround | Doesn't work either — macOS checks Info.plist for supported types before passing the file |
+| Full Launch Services database rebuild (`lsregister -kill -r -domain local -domain system -domain user`) | Overkill — targeted `-f` on single app is sufficient and much faster |
+| `codesign` in Linux sandbox | Not available — `codesign` is macOS-only; patch script must be run on the Mac |
+
+---
+
+## 5. Confirmed Patterns
+
+- **Studio is a Unity app** — its `Info.plist` is auto-generated by Unity's build process and lacks document type declarations. This will likely regress on every Studio update.
+- **`.io` files are ZIP archives** — UTTypeConformsTo should include `public.archive`. This is consistent with the skill's existing knowledge that `.io` files can be unzipped to access LDraw data.
+- **`lsregister -f` is the targeted way** to re-register a single app with Launch Services without rebuilding the entire database.
+- **Code signature removal is acceptable** — Studio is not distributed via App Store and already triggers Gatekeeper warnings on fresh install.
+
+---
+
+## 6. Scripts Created
+
+**File:** `~/Dev/Studio 2.0/patch-studio-file-association.sh`
+
+**What it does:**
+1. Backs up original `Info.plist` as `Info.plist.bak`
+2. Copies patched `Info.plist` from `~/Dev/Studio 2.0/Studio.app/Contents/` to `/Applications/Studio 2.0/Studio.app/Contents/`
+3. Runs `lsregister -f` on the target app
+
+**Note:** Does NOT handle code signature (user decided to skip `codesign` to keep it simple).
+
+---
+
+## 7. Studio.app Bundle Structure (Reference)
+
+```
+/Applications/Studio 2.0/
+├── Studio.app/
+│   └── Contents/
+│       ├── Frameworks/
+│       ├── Info.plist          ← THE file we patch
+│       ├── MacOS/
+│       │   └── Studio          ← Universal binary (x86_64 + arm64)
+│       ├── MonoBleedingEdge/
+│       ├── PlugIns/
+│       ├── Resources/
+│       │   ├── PlayerIcon.icns ← App icon (reused for .io file icon)
+│       │   ├── Data/
+│       │   └── ...
+│       └── _CodeSignature/
+│           └── CodeResources
+├── data/
+├── ldraw/
+├── patcher2/
+├── PhotoRealisticRenderer/
+├── povray/
+├── Sample/
+├── Tutorial/
+└── version.txt
+```
+
+Key facts:
+- `CFBundleIdentifier`: `com.BrickLink.Studio`
+- `CFBundleExecutable`: `Studio`
+- Unity version: `2022.3.62f2`
+- Studio version: `2.26.2_1`
+- Architecture: Universal (x86_64 + arm64)
+
+---
+
+## 8. Open Questions
+
+- **Will this patch survive Studio auto-updates?** Studio has a `patcher2/` directory suggesting it has a built-in update mechanism. Updates will likely overwrite `Info.plist`, requiring re-patching.
+- **Should the patch script be added to BrickitStudio repo?** Could be useful as a post-install step.
+- **Custom `.io` file icon** — currently using `PlayerIcon.icns` (the app icon). A dedicated document icon would be better UX but requires creating an `.icns` file.
+- **Verification status** — the patch was created and applied to the copy in `~/Dev/Studio 2.0/` but has NOT yet been tested (user hasn't run the script on the actual `/Applications/` copy yet).

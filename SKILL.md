@@ -61,11 +61,11 @@ All skill file content is always written in English.
 
 | User intent | Sub-skill to load |
 |---|---|
-| Open Studio, click, build in GUI / "Открой Studio", "поставь кубик" | `gui-navigation/guide.md` |
-| Render, photo-realistic image, visualize / "сделай рендер", "сфотографируй" | `render/guide.md` |
-| Parse .ldr/.mpd file, what is in this file / "Разбери файл" | `ldraw-format/guide.md` |
-| Create model, write LDraw code, generate construction / "Создай модель" | `model-generation/guide.md` |
-| Parts list, BOM, buy on Bricklink / "Список деталей", "закупить" | `bom-export/guide.md` |
+| Open Studio, click, build in GUI / "Открой Studio" (RU) / "ouvre Studio" (FR) / "öffne Studio" (DE) / "abre Studio" (ES) | `gui-navigation/guide.md` |
+| Render, photo-realistic image / "сделай рендер" (RU) / "fais un rendu" (FR) / "render machen" (DE) / "hacer render" (ES) / "レンダリング" (JA) / "渲染" (ZH) | `render/guide.md` |
+| Parse .ldr/.mpd file / "Разбери файл" (RU) / "analyse ce fichier" (FR) / "datei analysieren" (DE) / "analiza archivo" (ES) | `ldraw-format/guide.md` |
+| Create model, generate construction / "Создай модель" (RU) / "crée un modèle" (FR) / "erstelle Modell" (DE) / "crea modelo" (ES) / "モデル作成" (JA) / "创建模型" (ZH) | `model-generation/guide.md` |
+| Parts list, BOM, buy on Bricklink / "Список деталей" (RU) / "liste de pièces" (FR) / "Teileliste" (DE) / "lista de piezas" (ES) | `bom-export/guide.md` |
 | Convert STL/3D to LEGO, voxelization, algorithms, ML tools, research papers | `knowledge/INDEX.md` |
 
 Multiple sub-skills can be loaded simultaneously if the task spans domains (e.g. generate + export BOM).
@@ -118,7 +118,9 @@ Append an entry whenever something noteworthy happens:
 
 ## Session Auto-Summary Protocol
 
-**Run this at the end of every working session**, or when user signals end of session in any language ("done", "wrap up", "save", "закончили", "подведи итоги", etc.).
+**Run this at the end of every working session**, or when user signals end of session in any language
+("done", "wrap up", "save", "закончили", "подведи итоги" (RU), "c'est fini", "on s'arrête" (FR),
+"fertig", "speichern" (DE), "terminado", "guardar" (ES), "終わり", "保存して" (JA), "完成了", "保存" (ZH), etc.).
 
 ### Steps
 
