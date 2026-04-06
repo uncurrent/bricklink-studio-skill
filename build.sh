@@ -4,5 +4,6 @@ rm -f bricklink-studio.skill
 zip -r bricklink-studio.skill . \
   -x ".git/*" -x ".github/*" \
   -x "build.sh" -x "*.skill" \
-  -x "*.pyc" -x "*.DS_Store"
+  -x "*.pyc" -x "*.DS_Store" \
+  -x "updates/*"
 echo "✅ bricklink-studio.skill built"

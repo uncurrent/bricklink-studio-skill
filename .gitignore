@@ -39,6 +39,12 @@ __pycache__/
 .venv/
 venv/
 
+# ------------------------------------------------------------
+# Contribution source material — local only, never pushed
+# Working folder for per-release source files and contribution notes
+# ------------------------------------------------------------
+updates/
+
 # ============================================================
 # Files that ARE tracked (for clarity):
 # ============================================================
