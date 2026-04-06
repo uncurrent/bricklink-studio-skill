@@ -268,3 +268,11 @@ Before opening Instruction Maker, structure the model into logical submodels:
 
 **Export:**
 - Green "Export" button → choose pages (All or range) → format (PDF or PNG) → quality (1x / 2x / 4x)
+
+---
+
+## See Also
+
+- Automation scripts like `model_preview.sh`: `projects/*/scripts/` (automated preview generation)
+- GUI workflows and advanced patterns: `references/workflows.md`
+- For complex interactive tasks, scripts can automate repetitive Studio actions

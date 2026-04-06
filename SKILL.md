@@ -36,6 +36,34 @@ At the start of every session, before any task:
 
 ---
 
+## Core Principle: Script-First Development
+
+This skill produces **scripts as primary artifacts**, not just answers or one-off commands.
+
+1. **Write scripts, not commands.** When a task takes more than 3 tool calls or will likely be repeated, write a script. Save it. Name it clearly.
+
+2. **Save every useful script.** After a script is written and works:
+   - Save it to the project's `scripts/` folder
+   - Add a docstring with: purpose, inputs, outputs, usage example
+   - Update the project's `guide.md` scripts reference section
+
+3. **Bind scripts to recipes.** If a script is part of a known pipeline, reference it in the recipe file. If it creates a new capability, consider whether it starts a new recipe or extends an existing one.
+
+4. **Catalog what you build.** At the end of a session, if new scripts were created:
+   - List them in the session summary
+   - Note which recipe they belong to (or if they're standalone utilities)
+   - Update `patterns.md` if a new reusable pattern emerged
+
+5. **Prefer recipes over improvisation.** When the user asks to generate something that matches an existing recipe, **use the recipe**. Don't reinvent the pipeline. If the recipe needs modification, fork it — don't silently deviate.
+
+6. **Experiments graduate to recipes.** When an experimental script proves itself:
+   - Clean it up (docstring, CLI args, error handling)
+   - Move from workspace/archive to `scripts/`
+   - Write a recipe file or update an existing one
+   - Mark the experiment as "graduated" in `observations.md`
+
+---
+
 ## Compatibility Matrix
 
 | Sub-skill | claude.ai chat | Claude Code | API / other models | Cowork (Computer Use) |

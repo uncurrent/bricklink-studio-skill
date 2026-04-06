@@ -23,10 +23,23 @@ its own guide, patterns, and failed anti-patterns — independent from the gener
 
 ---
 
+## Project Directory Structure
+
+Each project can contain these directories:
+
+| Directory | Purpose |
+|-----------|---------|
+| `scripts/` | Production scripts organized by function (recipe-1/, coloring/, etc.) and `archive/` for historical reference |
+| `recipes/` | Formalized recipe files describing verified pipelines (inputs, steps, outputs). See `_RECIPE_TEMPLATE.md` |
+| `*.md` | guide.md (main), patterns.md, failed.md, observations.md |
+
+---
+
 ## Adding a New Project
 
 1. Copy `_template/` → rename to `projects/<project-name>/`
 2. Fill in `guide.md`: what the project is, goals, constraints, relevant sub-skills
 3. Add a row to the table above
 4. As you work: write observations to `observations.md`, promote to `patterns.md` / `failed.md`
-5. Add to `SKILL.md` sub-skill index if the project becomes a major recurring context
+5. When scripts are created: save to `scripts/`, write recipes to `recipes/`
+6. Add to `SKILL.md` sub-skill index if the project becomes a major recurring context

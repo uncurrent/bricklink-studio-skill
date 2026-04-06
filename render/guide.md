@@ -97,3 +97,11 @@ Use Blender when:
 ## Reference Files
 
 - `references/settings.md` — Studio render dialog options and recommended values
+
+---
+
+## See Also
+
+- Render recipes (e.g., 4-angle-preview): `projects/*/recipes/` and `recipes/`
+- Blender pipeline scripts: `projects/*/scripts/` for advanced rendering automation
+- Studio preset configurations: `references/settings.md`

@@ -152,3 +152,11 @@ Matrix: `-1 0 0 0 1 0 0 -1 0 0 0 1` → use `-1 0 0 0 1 0 0 0 -1`
 ## Reference Files
 
 - `references/patterns.md` — Ready-made patterns: walls, arches, Technic frames, roofs
+
+---
+
+## See Also
+
+- Model generation scripts: `projects/*/scripts/` (automation and batch processing)
+- Recipes using model generation: `projects/*/recipes/` and `recipes/`
+- Before generating new patterns, check `references/patterns.md` and existing scripts first

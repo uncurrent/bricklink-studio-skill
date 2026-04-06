@@ -121,3 +121,11 @@ Look for lines: `0 FILE <name>` — each is a separate submodel.
 
 - `references/syntax.md` — Full line type reference with edge cases
 - `references/common-parts.md` — Top-200 part IDs with names and dimensions
+
+---
+
+## See Also
+
+- LDraw packaging and IO scripts: `projects/*/scripts/` (ZIP handling and file conversion)
+- Recipes for LDraw processing: `projects/*/recipes/` and `recipes/`
+- Always check existing conversion scripts before implementing custom parsers

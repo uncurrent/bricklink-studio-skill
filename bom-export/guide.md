@@ -148,3 +148,11 @@ Available via File menu (no default shortcuts assigned):
 4. ⚠️ Warning: Studio allows pasting submodels that exceed palette quantity — use BrickLink compare tool to verify
 
 Source: https://rebrickable.com/help/studio-palette/
+
+---
+
+## See Also
+
+- BOM generation scripts and tools: `projects/*/scripts/` (batch export and analysis)
+- Recipes for BOM processing: `projects/*/recipes/` and `recipes/`
+- Color mapping and reference data: `references/color-ids.md`

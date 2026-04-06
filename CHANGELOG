@@ -7,6 +7,17 @@ Format: [vX.Y.Z] YYYY-MM-DD — Description
 
 ---
 
+## [v1.6.2] 2026-04-06 — Recipe system + Script-First Development principle
+- Recipe system: `recipes/` directories in projects with formalized recipe format
+- `projects/part-piles/recipes/_RECIPE_TEMPLATE.md`: template for creating new recipes
+- Three initial recipes: recipe-1.md (Gaussian pile), recipe-2.md (crystal growth), coloring.md (palette application)
+- `render/recipes/4-angle-preview.md`: render recipe using model_preview.sh
+- SKILL.md: new "Core Principle: Script-First Development" section — behavioral rule for producing scripts as primary artifacts, binding to recipes, preferring recipes over improvisation
+- Sub-skill guides: added "See also" blocks pointing to project scripts and recipes
+- `projects/_INDEX.md`: updated with recipes/ and scripts/ directory conventions
+- `projects/part-piles/guide.md`: added Recipes section linking to recipe files
+- `learning/patterns.md`: new pattern — scripts should be saved and linked to recipes
+
 ## [v1.6.1] 2026-04-06 — Scripts collection: full Pockets pipeline bundled into skill
 - projects/part-piles/scripts/recipe-1/: generator_pile.py, modifier_fill_gaps.py, modifier_settle_y.py, packager_io.sh, batch_generate.sh
 - projects/part-piles/scripts/recipe-2/: generator_toplayer_v4.py, generator_toplayer_with_modifiers.py, modifier_rotation_shuffle.py, modifier_fill_small_parts.py, batch_generate.py

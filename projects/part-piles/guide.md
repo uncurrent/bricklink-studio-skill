@@ -20,6 +20,20 @@ suitable for Brickit Pockets feature (visual representation of parts stored in a
 
 ---
 
+## Recipes
+
+To generate pockets, **follow a recipe**. Recipes are verified pipelines with known inputs, steps, and outputs.
+
+| Recipe | File | What it produces |
+|--------|------|-----------------|
+| Recipe 1 — Gaussian Pile | `recipes/recipe-1.md` | Natural mounded pile of 91 parts (66 hero + 25 fill), top-down |
+| Recipe 2 — Crystal Growth | `recipes/recipe-2.md` | Flat spread of ~51 tightly packed parts, top-down |
+| Coloring | `recipes/coloring.md` | Recolored variants (11 palettes), chains after Recipe 1 or 2 |
+
+For QA preview of generated files, see the render recipe: `render/recipes/4-angle-preview.md`
+
+---
+
 ## Pockets Overview
 
 | File | Type | Parts | Notes |

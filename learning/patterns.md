@@ -54,3 +54,15 @@ the perspective is lost. Key codes for AppleScript: Keypad 1=83, 2=84, 3=85, 4=8
 Escape (deselect all parts, removes selection highlights). Restore with Cmd+/ and Cmd+B again.
 **Confirmed:** 1 time (model_preview.sh)
 **Sub-skill:** gui-navigation
+
+## 2026-04-06 — Scripts should be saved to project scripts/ and linked to recipes
+**Context:** Creating scripts during working sessions
+**Pattern:** When a task produces a working script (generator, modifier, packager, batch runner):
+  1. Save to `projects/<name>/scripts/` with a clear filename and docstring
+  2. If it's part of a pipeline, reference it in the corresponding recipe file in `recipes/`
+  3. Update the project's `guide.md` scripts reference section
+  4. List the script in the session summary
+**Why:** Scripts are the primary reusable artifacts. Unsaved scripts are lost between sessions.
+Binding them to recipes ensures they can be found and used consistently.
+**Confirmed:** Recipe 1 pipeline (5 scripts), Recipe 2 pipeline (5 scripts), Coloring (3 scripts)
+**Sub-skill:** general — applies to all project work
