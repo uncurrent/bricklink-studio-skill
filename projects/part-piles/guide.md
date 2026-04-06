@@ -549,6 +549,77 @@ See `MODELING_BESTPRACTICES.md` in BrickitStudio for Blender details.
 
 ---
 
+## Scripts Reference
+
+All production scripts are included in the skill at `projects/part-piles/scripts/`.
+
+### Recipe 1 — `scripts/recipe-1/`
+
+| Script | Purpose | CLI |
+|--------|---------|-----|
+| `generator_pile.py` | Generate base pile (rotation-aware AABB, multi-seed) | `python3 generator_pile.py --name "Pocket N" --size medium --seeds 400 460 -o /tmp/p.ldr` |
+| `modifier_fill_gaps.py` | Fill top-down visual gaps with small parts | `python3 modifier_fill_gaps.py input.ldr output.ldr --seed 42` |
+| `modifier_settle_y.py` | Compact pile vertically (gravity simulate) | `python3 modifier_settle_y.py input.ldr output.ldr` |
+| `packager_io.sh` | Package .ldr as .io ZIP for Stud.io | `bash packager_io.sh input.ldr "output/Pocket N.io" 91` |
+| `batch_generate.sh` | Full pipeline for multiple pockets | `./batch_generate.sh` |
+
+**Full Recipe 1 pipeline:**
+```bash
+python3 generator_pile.py --name "Pocket 20" --size medium --seeds 900 980 -o /tmp/p.ldr
+python3 modifier_fill_gaps.py /tmp/p.ldr /tmp/pf.ldr --seed 42
+python3 modifier_settle_y.py /tmp/pf.ldr /tmp/ps.ldr
+bash packager_io.sh /tmp/ps.ldr "Pocket 20.io" 91
+```
+
+### Recipe 2 — `scripts/recipe-2/`
+
+| Script | Purpose | CLI |
+|--------|---------|-----|
+| `generator_toplayer_v4.py` | Sequential outward placement, best of 60 seeds | Used as module |
+| `generator_toplayer_with_modifiers.py` | Driver: runs v4 + both modifiers, writes B/C/D variants | `python3 generator_toplayer_with_modifiers.py` |
+| `modifier_rotation_shuffle.py` | Shuffle rotations (upright/leaning/on-side/upside-down) | Used as module |
+| `modifier_fill_small_parts.py` | Monte Carlo gap fill with small parts | Used as module |
+| `batch_generate.py` | Batch run Recipe 2 for multiple pockets | `python3 batch_generate.py` |
+
+**Full Recipe 2 pipeline:**
+```bash
+cd scripts/recipe-2
+python3 generator_toplayer_with_modifiers.py
+# Produces /tmp/pocket12B.ldr (rotation shuffle)
+#          /tmp/pocket12C.ldr (gap fill)
+#          /tmp/pocket12D.ldr (both modifiers)
+```
+
+### Coloring — `scripts/coloring/`
+
+| Script | Purpose | CLI |
+|--------|---------|-----|
+| `color_palettes.py` | Palette definitions (11 palettes) | Import only |
+| `modifier_colorize.py` | Apply one palette to one .io file | `python3 modifier_colorize.py input.io --palette neon-punch-1 -o output.io` |
+| `batch_colorize.py` | Apply all palettes to all .io files in folder | `python3 batch_colorize.py input_folder/ output_folder/` |
+
+**End-to-end: generate + colorize:**
+```bash
+./batch_generate.sh                              # → output/*.io (base pockets)
+python3 ../coloring/batch_colorize.py output/ colored/   # → colored/*.io (all 11 palettes)
+```
+
+### Preview — `scripts/preview/`
+
+| Script | Purpose | CLI |
+|--------|---------|-----|
+| `model_preview.sh` | Batch 4-angle screenshot for all .io in a folder | `./model_preview.sh ./output` |
+
+Requires macOS + BrickLink Studio + Accessibility permissions for terminal app.
+
+### Archive — `scripts/archive/`
+
+Historical per-pocket generator scripts showing the evolution of Recipe 1 (P6→P14) and
+Recipe 2 (v1→v4). Not meant for direct use — reference only.
+See `scripts/archive/README.md` for the full evolution timeline.
+
+---
+
 ## Open Issues / Next Steps
 
 - Recipe 2 has only top-layer pockets (P12 variants). Full pile with hero/accent lower layers not yet developed.

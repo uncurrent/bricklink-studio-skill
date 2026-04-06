@@ -7,6 +7,16 @@ Format: [vX.Y.Z] YYYY-MM-DD — Description
 
 ---
 
+## [v1.6.1] 2026-04-06 — Scripts collection: full Pockets pipeline bundled into skill
+- projects/part-piles/scripts/recipe-1/: generator_pile.py, modifier_fill_gaps.py, modifier_settle_y.py, packager_io.sh, batch_generate.sh
+- projects/part-piles/scripts/recipe-2/: generator_toplayer_v4.py, generator_toplayer_with_modifiers.py, modifier_rotation_shuffle.py, modifier_fill_small_parts.py, batch_generate.py
+- projects/part-piles/scripts/coloring/: color_palettes.py, modifier_colorize.py, batch_colorize.py
+- projects/part-piles/scripts/preview/: model_preview.sh
+- projects/part-piles/scripts/archive/: 15 historical per-pocket generators (P6, P9–P14, P12 v1–v4, P12-BCD, mod_fill, mod_rotate, fill_gaps, settle_y) + README with algorithm evolution timeline
+- projects/part-piles/guide.md: added Scripts Reference section with CLI usage for all production scripts and end-to-end pipeline commands
+- build.sh: exclude updates/ from skill archive
+- .gitignore: exclude updates/ from git (local contribution folder)
+
 ## [v1.6.0] 2026-04-06 — Full Pockets coverage: two recipes, coloring, production pipeline (P1–P19)
 - projects/part-piles/guide.md: complete rewrite — P1–P19 overview table, Small + Medium size standards, full part list with dims, Recipe 1 (Gaussian rejection sampling: generator+fill_gaps+settle_y), Recipe 2 (sequential outward placement: touch-point formula, XZ-only collision, rotation_shuffle, fill_small_parts), coloring system (11 palettes, modifier_colorize.py, batch_colorize.py), production pipeline, batch generation, model naming fix (0 Name: {pocket_name}.ldr), render settings, macOS file association patch, Blender physics option
 - projects/part-piles/patterns.md: 14 new patterns — Medium sweet spot (0% forced), Y-level separation, VIS_FACTOR=0.60–0.65, EXISTING_SCALE=0.65 on nominal dims, touch-point formula, XZ-only collision, gravity settle bottom-to-top, GAP decreasing through pipeline stages, N_ANGLES=96, TOP_K=10, pocket naming in header; plus P7–P10 patterns (tilt reduction for flat piles, 6–8% forced floor)
