@@ -267,5 +267,6 @@ Projects are specific recurring build types with their own isolated knowledge.
 Always check `projects/_INDEX.md` at session start.
 
 - `projects/part-piles/` — 🟢 Active: random part pile renders for app graphics
+- `projects/parts-catalog/` — 🟢 Active: cross-system parts database with rarity scoring
 - `projects/brickheadz/` — 🟡 Placeholder: Brickheadz-style figures
 - `projects/_template/` — Template for new projects (copy to start a new one)

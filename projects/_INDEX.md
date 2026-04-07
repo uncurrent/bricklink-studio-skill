@@ -19,6 +19,7 @@ its own guide, patterns, and failed anti-patterns — independent from the gener
 | Project | Folder | What it is | Status |
 |---|---|---|---|
 | Part Piles | `part-piles/` | Random piles of LEGO parts for app graphics / bag imagery | 🟢 Active |
+| Parts Catalog | `parts-catalog/` | Cross-system LEGO parts database with rarity scoring | 🟢 Active |
 | Brickheadz | `brickheadz/` | Brickheadz-style figures (oversized head, minimal body) | 🟡 Placeholder |
 
 ---

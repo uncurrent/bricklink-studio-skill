@@ -7,6 +7,25 @@ Format: [vX.Y.Z] YYYY-MM-DD — Description
 
 ---
 
+## [v1.7.0] 2026-04-10 — Parts Catalog: cross-system LEGO parts database with rarity scoring + model buildability analysis
+- projects/parts-catalog/: NEW project — SQLite database from Rebrickable dumps + model analyzer
+  - guide.md: full project guide with schema, workflow, rarity algorithm, model analysis, .io file structure, Quick Start for Team, DB repo reference
+  - scripts/build_catalog.py: downloads 9 CSV dumps, builds DB; OR --download-prebuilt from github.com/uncurrent/lego-parts-catalog/releases; --check-update; --force
+  - scripts/query_catalog.py: interactive queries (search, part details, color filter, rarest combos) + Excel export
+  - scripts/enrich_bricklink.py: Rebrickable API enrichment (external IDs, images) + rarity score computation (0–100, 5 tiers)
+  - scripts/analyze_model.py: buildability analysis (EASY/MODERATE/HARD) + --instructions mode for step-by-step layout extraction from model.ins XML (camera angles, page mapping)
+  - recipes/full-catalog-build.md: verified 4-step pipeline recipe
+  - recipes/model-buildability-analysis.md: verified model analysis recipe (Pochita + Toucan verified)
+  - patterns.md: 7 confirmed patterns (+ .io ZIP structure with model.ins, + --download-prebuilt zero-config workflow)
+  - failed.md: 2 anti-patterns (BrickLink API seller-only, Cowork sandbox blocks CDN)
+- projects/_INDEX.md: added Parts Catalog entry
+- bom-export/guide.md: added See Also link to parts catalog
+- knowledge/INDEX.md + tools.md: added T05 entry for local parts catalog
+- learning/observations.md: Rebrickable API as BrickLink fallback
+- SKILL.md: added parts-catalog to Project Index
+
+---
+
 ## [v1.6.2] 2026-04-06 — Recipe system + Script-First Development principle
 - Recipe system: `recipes/` directories in projects with formalized recipe format
 - `projects/part-piles/recipes/_RECIPE_TEMPLATE.md`: template for creating new recipes

@@ -1,7 +1,7 @@
 # Tools — Knowledge Base
 
 Software tools, libraries, and resources for LDraw/LEGO modeling and rendering.
-Reference entries: T01–T04. See INDEX.md for access protocol.
+Reference entries: T01–T05. See INDEX.md for access protocol.
 
 ---
 
@@ -129,3 +129,17 @@ loader.load('model.ldr', (group) => {
 Rebrickable has a detailed guide for creating building instructions in Studio:
 https://rebrickable.com/help/studio-instructions/
 Covers: step setup, page layout, callouts, buffer exchange, export.
+
+---
+
+## T05 — Parts Catalog (Local SQLite Database)
+**Accesses:** 0
+**Source:** Built in-house from Rebrickable data
+**Location:** `projects/parts-catalog/`
+
+Local SQLite database with ~70k LEGO parts, all colors, cross-system ID mapping (BrickLink ↔ LDraw ↔ LEGO Element ID), and rarity scoring. Built from Rebrickable CSV dumps + API enrichment.
+
+Key tables: `parts`, `colors`, `elements`, `part_color_stats`, `rarity_scores`, `external_ids`.
+Query with `query_catalog.py` or directly via SQL.
+
+**Integration points:** BOM export enrichment, model generation part selection, coloring palette weighting.

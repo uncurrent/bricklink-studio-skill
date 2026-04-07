@@ -42,6 +42,7 @@ After using any entry: **increment its counter** in the Directory table.
 | T02 | LDraw standard: spec, parts library, community resources | 0 |
 | T03 | three.js LDraw loader — browser-based 3D rendering | 0 |
 | T04 | Community resources: BrickHub, Rebrickable, OMR | 0 |
+| T05 | Parts Catalog (local SQLite) — Rebrickable-sourced DB with ~70k parts, cross-ID mapping, rarity scores. `projects/parts-catalog/` | 0 |
 
 ### 🔍 Part Recognition  →  `part-recognition.md`
 
@@ -124,6 +125,8 @@ After using any entry: **increment its counter** in the Directory table.
 | Robotic or automated LEGO assembly | ASM04 |
 | ML + spatial reasoning, VLM capabilities | SR01, SR02, SR04 |
 | What tools/papers exist for X? | COL01, then domain files |
+| Part rarity, color availability, cross-system ID mapping | T05 |
+| Check if a model is buildable / part+color exists | T05 |
 
 ---
 

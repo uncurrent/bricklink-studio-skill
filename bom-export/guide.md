@@ -156,3 +156,4 @@ Source: https://rebrickable.com/help/studio-palette/
 - BOM generation scripts and tools: `projects/*/scripts/` (batch export and analysis)
 - Recipes for BOM processing: `projects/*/recipes/` and `recipes/`
 - Color mapping and reference data: `references/color-ids.md`
+- Parts catalog: `projects/parts-catalog/` — full parts database with cross-system ID mapping, color availability, and rarity scores. Use for BOM enrichment and color substitution suggestions.
